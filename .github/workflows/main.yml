@@ -26,5 +26,5 @@ jobs:
              sudo apt install openssh-client sshpass -y 
              
       - name: Teste ssh
-        run: echo 'sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" mac@docker.macsolucoes.com "ls -lh /"'
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" mac@docker.macsolucoes.com "ls -lh /"
           
