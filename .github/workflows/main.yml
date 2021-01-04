@@ -16,8 +16,7 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Instalação SSH Client
-        run: sudo apt update && sudo apt install openssh-client sshpass -y 
-        
-      - name: Acesso Docker
-        run: sshpass -p Senha123 ssh mac@docker.macsolucoes.com  "ls -lh /"
+        run: sudo apt update && 
+             sudo apt install openssh-client sshpass -y &&
+             sshpass -p Senha123 ssh mac@docker.macsolucoes.com  "ls -lh /"
           
