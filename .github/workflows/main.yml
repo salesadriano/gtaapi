@@ -1,17 +1,21 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-
+defaults:
+  run: 
+    shell: bash
+    
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
