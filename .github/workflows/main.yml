@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: debian
+    runs-on: debian-lastest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
