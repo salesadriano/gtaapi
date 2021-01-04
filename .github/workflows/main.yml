@@ -4,7 +4,8 @@ name: CI
 defaults:
   run: 
     shell: bash
-    
+   
+
 on:
   push:
     branches: [ main ]
@@ -14,6 +15,7 @@ on:
 
 jobs:
   build:
+    environment: SSH
     runs-on: ubuntu-latest
     
     # Steps represent a sequence of tasks that will be executed as part of the job
