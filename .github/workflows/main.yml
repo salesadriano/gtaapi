@@ -19,5 +19,5 @@ jobs:
         run: sudo apt update && sudo apt install openssh-client sshpass -y 
         
       - name: Acesso Docker
-        run: sshpass -v -p $SSHPasswd ssh mac@docker.macsolucoes.com "ls -lh"
+        run: uname -a && cat /etc/or-realese
           
