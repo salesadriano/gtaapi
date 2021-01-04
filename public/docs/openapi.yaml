@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+    title: 'API de Publicação de Dados de GTA'
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://gtaapi.macsolucoes.com'
+paths:
+    /:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                302:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://gtaapi.macsolucoes.com/docs'\" />\n\n        <title>Redirecting to http://gtaapi.macsolucoes.com/docs</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://gtaapi.macsolucoes.com/docs\">http://gtaapi.macsolucoes.com/docs</a>.\n    </body>\n</html>"
+            tags:
+                - Endpoints
+            security: []
+    /login:
+        post:
+            summary: 'Authenticate a user and return the token if the provided credentials are correct.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /entidade:
+        get:
+            summary: 'Retorna lista de registros cadastrados'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    error: 'Token nao fornecido.'
+                                properties:
+                                    error: { type: string, example: 'Token nao fornecido.' }
+            tags:
+                - Endpoints
+            security: []
+    /estabelecimento:
+        get:
+            summary: 'Retorna lista de registros cadastrados'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    error: 'Token nao fornecido.'
+                                properties:
+                                    error: { type: string, example: 'Token nao fornecido.' }
+            tags:
+                - Endpoints
+            security: []
+    /gta:
+        get:
+            summary: 'Retorna lista de registros cadastrados'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    error: 'Token nao fornecido.'
+                                properties:
+                                    error: { type: string, example: 'Token nao fornecido.' }
+            tags:
+                - Endpoints
+            security: []
