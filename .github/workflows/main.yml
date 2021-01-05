@@ -6,7 +6,7 @@ defaults:
     shell: bash
 env: 
   image: gtaapi
-  path: /projetos
+  path: /projetos/
 
 on:
   push:
