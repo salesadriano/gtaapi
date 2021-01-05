@@ -2,9 +2,9 @@
 
 name: CI
 defaults:
-  run: 
+  run:
     shell: bash
-env: 
+env:
   image: gtaapi
   path: /projetos/
 
@@ -13,25 +13,31 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-    
+
 
 jobs:
   build:
     environment: SSH
     runs-on: ubuntu-latest
-    
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
       - name: Instalação SSH Client
-        run: sudo apt update && 
-             sudo apt install openssh-client sshpass -y 
-             
+        run: sudo apt update &&
+             sudo apt install openssh-client sshpass -y
+
       - name: Atualização do projeto
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" 
-             mac@docker.macsolucoes.com "cd ${{ env.path }}${{ env.image }} && git pull -f && composer update"
-            
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
+             mac@docker.macsolucoes.com "cd ${{ env.path }}${{ env.image }} && git pull -f"
+
       - name: Buildar nova imagem
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" 
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
              mac@docker.macsolucoes.com "docker build ${{ env.path }}${{ env.image }}/container/. "
-          
+
+      - name: Atualização do projeto
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
+             mac@docker.macsolucoes.com "docker exec ${{ env.image }} php composer.phar update"
+
+
+
