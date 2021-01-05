@@ -40,7 +40,7 @@ jobs:
 
       - name: Atualização do projeto
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
-             mac@docker.macsolucoes.com "docker exec ${{ env.image }} php composer.phar update"
+             mac@docker.macsolucoes.com "docker exec ${{ env.image }} php composer.phar update && exit 0 "
 
 
 
