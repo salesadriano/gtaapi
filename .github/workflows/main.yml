@@ -29,5 +29,5 @@ jobs:
              
       - name: Atualização do projeto
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" 
-             mac@docker.macsolucoes.com "cd ${{ env.path }}${{ env.image }} && git pull -b main -f"
+             mac@docker.macsolucoes.com "cd ${{ env.path }}${{ env.image }} && git pull -f"
           
