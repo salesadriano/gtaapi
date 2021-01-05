@@ -4,7 +4,9 @@ name: CI
 defaults:
   run: 
     shell: bash
-   
+env: 
+  image: gtaapi
+  path: /projetos
 
 on:
   push:
@@ -26,5 +28,6 @@ jobs:
              sudo apt install openssh-client sshpass -y 
              
       - name: Teste ssh
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" mac@docker.macsolucoes.com "ls -lh /"
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no" 
+             mac@docker.macsolucoes.com "cd ${{ env.path }}/${{ env.path }} && git pull -b main -f"
           
