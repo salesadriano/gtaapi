@@ -37,7 +37,7 @@ jobs:
 
       - name: Buildar nova imagem
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
-             mac@docker.macsolucoes.com "docker run -d --name ${{ env.image }} -v ${{ env.path }}${{ env.image }}:/code -p 80801:80  ${{ env.image }}"
+             mac@docker.macsolucoes.com "docker run -d --name ${{ env.image }} -v ${{ env.path }}${{ env.image }}:/code -p 8081:80  ${{ env.image }}"
 
       - name: Atualização do projeto
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
