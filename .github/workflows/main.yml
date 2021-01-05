@@ -22,7 +22,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Runs a single command using the runners shell
       - name: Instalação SSH Client
         run: sudo apt update &&
              sudo apt install openssh-client sshpass -y
@@ -35,7 +34,7 @@ jobs:
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
              mac@docker.macsolucoes.com "docker build ${{ env.path }}${{ env.image }}/container/. -t ${{ env.image }} "
 
-      - name: Buildar nova imagem
+      - name: Executar nova imagem
         run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
              mac@docker.macsolucoes.com "docker run -d --name ${{ env.image }} -v ${{ env.path }}${{ env.image }}:/code -p 8081:80  ${{ env.image }}"
 
