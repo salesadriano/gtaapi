@@ -31,17 +31,14 @@ jobs:
              mac@docker.macsolucoes.com "cd ${{ env.path }}${{ env.image }} && git pull -f "
 
       - name: Buildar nova imagem
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh
              mac@docker.macsolucoes.com "docker build ${{ env.path }}${{ env.image }}/container/. -t ${{ env.image }} "
 
       - name: Executar nova imagem
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh
              mac@docker.macsolucoes.com "docker run -d --name ${{ env.image }} -v ${{ env.path }}${{ env.image }}:/code -p 8081:80  ${{ env.image }}"
 
-      - name: Atualização do projeto
-        run: sshpass -v -p ${{ secrets.PASSWD }} ssh -o "StrictHostKeyChecking no"
-             mac@docker.macsolucoes.com "docker exec ${{ env.image }} php composer.phar update && exit 0 "
-
-
-
+      - name: Atuallizar bibliotecas
+        run: sshpass -v -p ${{ secrets.PASSWD }} ssh
+             mac@docker.macsolucoes.com "docker exec ${{ env.image }} /code/composer.sh "
 
