@@ -49,7 +49,7 @@ RUN ln -fs /usr/share/zoneinfo/America/Rio_Branco /etc/localtime && \
     printf "; priority=20\nextension=sqlsrv.so\n" > /etc/php/7.4/mods-available/sqlsrv.ini && \
     printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/7.4/mods-available/pdo_sqlsrv.ini && \
     phpenmod -v 7.4 sqlsrv pdo_sqlsrv  && \
-    chown -R www-data:www-data /code && \
+    chown -R www-data:www-data /code/public /code/storage  && \
     chown 755 /code/composer.sh && \
     chmod 755 /config.sh && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
