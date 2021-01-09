@@ -10,7 +10,7 @@
 
 ```bash
 curl -X POST \
-    "http://gtaapi.macsolucoes.com/login?loginUsuarioSistema=perferendis&senhaUsuarioSistema=quasi" \
+    "http://gtaapi.macsolucoes.com/login?loginUsuarioSistema=ipsam&senhaUsuarioSistema=sunt" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -21,8 +21,8 @@ const url = new URL(
 );
 
 let params = {
-    "loginUsuarioSistema": "perferendis",
-    "senhaUsuarioSistema": "quasi",
+    "loginUsuarioSistema": "ipsam",
+    "senhaUsuarioSistema": "sunt",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));

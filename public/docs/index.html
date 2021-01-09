@@ -64,7 +64,7 @@
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://gtaapi.macsolucoes.com</code></pre><h1>Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Estabelecimento</h1>
 <h2>Dados dos Estabelecimento</h2>
@@ -74,7 +74,7 @@
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/estabelecimento?municipio=totam&amp;ano=6&amp;UF=consequatur&amp;nomUF=officiis&amp;registrosPagina=4&amp;pagina=8" \
+    -G "http://gtaapi.macsolucoes.com/estabelecimento?municipio=et&amp;ano=19&amp;UF=cum&amp;nomUF=quam&amp;completo=1&amp;registrosPagina=17&amp;pagina=1" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -83,12 +83,13 @@
 );
 
 let params = {
-    "municipio": "totam",
-    "ano": "6",
-    "UF": "consequatur",
-    "nomUF": "officiis",
-    "registrosPagina": "4",
-    "pagina": "8",
+    "municipio": "et",
+    "ano": "19",
+    "UF": "cum",
+    "nomUF": "quam",
+    "completo": "1",
+    "registrosPagina": "17",
+    "pagina": "1",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -163,6 +164,12 @@ Sigla do Estado</p>
 <br>
 Nome do Estado</p>
 <p>
+<b><code>completo</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+<label data-endpoint="GETestabelecimento" hidden><input type="radio" name="completo" value="1" data-endpoint="GETestabelecimento" data-component="query" ><code>true</code></label>
+<label data-endpoint="GETestabelecimento" hidden><input type="radio" name="completo" value="0" data-endpoint="GETestabelecimento" data-component="query" ><code>false</code></label>
+<br>
+Determina se as GTAs serão retornadas</p>
+<p>
 <b><code>registrosPagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
 <input type="number" name="registrosPagina" data-endpoint="GETestabelecimento" data-component="query"  hidden>
 <br>
@@ -226,7 +233,7 @@ Ano de emissão das GTAs</p><h1>GTA</h1>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/gta?ano=2&amp;mes=voluptas&amp;finalidade=ullam&amp;especie=aut&amp;registrosPagina=14&amp;pagina=13" \
+    -G "http://gtaapi.macsolucoes.com/gta?ano=19&amp;mes=neque&amp;finalidade=molestiae&amp;especie=debitis&amp;registrosPagina=10&amp;pagina=19" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -235,12 +242,12 @@ Ano de emissão das GTAs</p><h1>GTA</h1>
 );
 
 let params = {
-    "ano": "2",
-    "mes": "voluptas",
-    "finalidade": "ullam",
-    "especie": "aut",
-    "registrosPagina": "14",
-    "pagina": "13",
+    "ano": "19",
+    "mes": "neque",
+    "finalidade": "molestiae",
+    "especie": "debitis",
+    "registrosPagina": "10",
+    "pagina": "19",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -437,7 +444,7 @@ date .</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://gtaapi.macsolucoes.com/login?loginUsuarioSistema=perferendis&amp;senhaUsuarioSistema=quasi" \
+    "http://gtaapi.macsolucoes.com/login?loginUsuarioSistema=ipsam&amp;senhaUsuarioSistema=sunt" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
@@ -445,8 +452,8 @@ date .</p>
 );
 
 let params = {
-    "loginUsuarioSistema": "perferendis",
-    "senhaUsuarioSistema": "quasi",
+    "loginUsuarioSistema": "ipsam",
+    "senhaUsuarioSistema": "sunt",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));

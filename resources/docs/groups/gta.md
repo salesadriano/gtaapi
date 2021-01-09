@@ -11,7 +11,7 @@
 
 ```bash
 curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/gta?ano=2&mes=voluptas&finalidade=ullam&especie=aut&registrosPagina=14&pagina=13" \
+    -G "http://gtaapi.macsolucoes.com/gta?ano=19&mes=neque&finalidade=molestiae&especie=debitis&registrosPagina=10&pagina=19" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -23,12 +23,12 @@ const url = new URL(
 );
 
 let params = {
-    "ano": "2",
-    "mes": "voluptas",
-    "finalidade": "ullam",
-    "especie": "aut",
-    "registrosPagina": "14",
-    "pagina": "13",
+    "ano": "19",
+    "mes": "neque",
+    "finalidade": "molestiae",
+    "especie": "debitis",
+    "registrosPagina": "10",
+    "pagina": "19",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));

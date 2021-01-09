@@ -16,62 +16,72 @@ paths:
                     in: query
                     name: municipio
                     description: '<b>Nome do Municipio</b>'
-                    example: totam
+                    example: et
                     required: true
                     schema:
                         type: string
                         description: '<b>Nome do Municipio</b>'
-                        example: totam
+                        example: et
                 -
                     in: query
                     name: ano
                     description: '<b>Ano de emissão das GTAs</b>'
-                    example: 6
+                    example: 19
                     required: true
                     schema:
                         type: integer
                         description: '<b>Ano de emissão das GTAs</b>'
-                        example: 6
+                        example: 19
                 -
                     in: query
                     name: UF
                     description: 'Sigla do Estado'
-                    example: consequatur
+                    example: cum
                     required: false
                     schema:
                         type: string
                         description: 'Sigla do Estado'
-                        example: consequatur
+                        example: cum
                 -
                     in: query
                     name: nomUF
                     description: 'Nome do Estado'
-                    example: officiis
+                    example: quam
                     required: false
                     schema:
                         type: string
                         description: 'Nome do Estado'
-                        example: officiis
+                        example: quam
+                -
+                    in: query
+                    name: completo
+                    description: 'Determina se as GTAs serão retornadas'
+                    example: true
+                    required: false
+                    schema:
+                        type: boolean
+                        description: 'Determina se as GTAs serão retornadas'
+                        example: true
                 -
                     in: query
                     name: registrosPagina
                     description: 'Numero de registros em cada página da lista'
-                    example: 4
+                    example: 17
                     required: false
                     schema:
                         type: integer
                         description: 'Numero de registros em cada página da lista'
-                        example: 4
+                        example: 17
                 -
                     in: query
                     name: pagina
                     description: 'Pagina da lista a ser apresentada'
-                    example: 8
+                    example: 1
                     required: false
                     schema:
                         type: integer
                         description: 'Pagina da lista a ser apresentada'
-                        example: 8
+                        example: 1
                 -
                     in: header
                     name: Authorization
@@ -112,62 +122,62 @@ paths:
                     in: query
                     name: ano
                     description: '<b>Ano de emissão das GTAs</b>'
-                    example: 2
+                    example: 19
                     required: true
                     schema:
                         type: integer
                         description: '<b>Ano de emissão das GTAs</b>'
-                        example: 2
+                        example: 19
                 -
                     in: query
                     name: mes
                     description: 'Mes de emissão das GTAs'
-                    example: voluptas
+                    example: neque
                     required: false
                     schema:
                         type: string
                         description: 'Mes de emissão das GTAs'
-                        example: voluptas
+                        example: neque
                 -
                     in: query
                     name: finalidade
                     description: 'Nome do Estado'
-                    example: ullam
+                    example: molestiae
                     required: false
                     schema:
                         type: string
                         description: 'Nome do Estado'
-                        example: ullam
+                        example: molestiae
                 -
                     in: query
                     name: especie
                     description: 'Nome do Estado'
-                    example: aut
+                    example: debitis
                     required: false
                     schema:
                         type: string
                         description: 'Nome do Estado'
-                        example: aut
+                        example: debitis
                 -
                     in: query
                     name: registrosPagina
                     description: 'Numero de registros em cada página da lista'
-                    example: 14
+                    example: 10
                     required: false
                     schema:
                         type: integer
                         description: 'Numero de registros em cada página da lista'
-                        example: 14
+                        example: 10
                 -
                     in: query
                     name: pagina
                     description: 'Pagina da lista a ser apresentada'
-                    example: 13
+                    example: 19
                     required: false
                     schema:
                         type: integer
                         description: 'Pagina da lista a ser apresentada'
-                        example: 13
+                        example: 19
                 -
                     in: header
                     name: Authorization
@@ -255,22 +265,22 @@ paths:
                     in: query
                     name: loginUsuarioSistema
                     description: '<b>Login do usuario</b>'
-                    example: perferendis
+                    example: ipsam
                     required: true
                     schema:
                         type: string
                         description: '<b>Login do usuario</b>'
-                        example: perferendis
+                        example: ipsam
                 -
                     in: query
                     name: senhaUsuarioSistema
                     description: '<b>Senha do usuario</b>'
-                    example: quasi
+                    example: sunt
                     required: true
                     schema:
                         type: string
                         description: '<b>Senha do usuario</b>'
-                        example: quasi
+                        example: sunt
                 -
                     in: header
                     name: Content-Type

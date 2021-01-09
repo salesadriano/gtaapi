@@ -11,7 +11,7 @@
 
 ```bash
 curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/estabelecimento?municipio=totam&ano=6&UF=consequatur&nomUF=officiis&registrosPagina=4&pagina=8" \
+    -G "http://gtaapi.macsolucoes.com/estabelecimento?municipio=et&ano=19&UF=cum&nomUF=quam&completo=1&registrosPagina=17&pagina=1" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -23,12 +23,13 @@ const url = new URL(
 );
 
 let params = {
-    "municipio": "totam",
-    "ano": "6",
-    "UF": "consequatur",
-    "nomUF": "officiis",
-    "registrosPagina": "4",
-    "pagina": "8",
+    "municipio": "et",
+    "ano": "19",
+    "UF": "cum",
+    "nomUF": "quam",
+    "completo": "1",
+    "registrosPagina": "17",
+    "pagina": "1",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -107,6 +108,12 @@ Sigla do Estado</p>
 <input type="text" name="nomUF" data-endpoint="GETestabelecimento" data-component="query"  hidden>
 <br>
 Nome do Estado</p>
+<p>
+<b><code>completo</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+<label data-endpoint="GETestabelecimento" hidden><input type="radio" name="completo" value="1" data-endpoint="GETestabelecimento" data-component="query" ><code>true</code></label>
+<label data-endpoint="GETestabelecimento" hidden><input type="radio" name="completo" value="0" data-endpoint="GETestabelecimento" data-component="query" ><code>false</code></label>
+<br>
+Determina se as GTAs serão retornadas</p>
 <p>
 <b><code>registrosPagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
 <input type="number" name="registrosPagina" data-endpoint="GETestabelecimento" data-component="query"  hidden>

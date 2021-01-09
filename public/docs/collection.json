@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "API de Publica\u00e7\u00e3o de Dados de GTA",
-        "_postman_id": "715efbde-d57a-4ed2-9551-94154520ef40",
+        "_postman_id": "f00a8962-9582-4c75-8b85-aeae3fb45671",
         "description": "Esta API tem deve permitir a publica\u00e7\u00e3o segura dos dados relacionados as Guias de Tr\u00e2nsito Animal (GTA) emitidas.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -29,42 +29,48 @@
                             "query": [
                                 {
                                     "key": "municipio",
-                                    "value": "totam",
+                                    "value": "et",
                                     "description": "Nome do Municipio",
                                     "disabled": false
                                 },
                                 {
                                     "key": "ano",
-                                    "value": "6",
+                                    "value": "19",
                                     "description": "Ano de emiss\u00e3o das GTAs",
                                     "disabled": false
                                 },
                                 {
                                     "key": "UF",
-                                    "value": "consequatur",
+                                    "value": "cum",
                                     "description": "Sigla do Estado",
                                     "disabled": false
                                 },
                                 {
                                     "key": "nomUF",
-                                    "value": "officiis",
+                                    "value": "quam",
                                     "description": "Nome do Estado",
                                     "disabled": false
                                 },
                                 {
+                                    "key": "completo",
+                                    "value": "1",
+                                    "description": "Determina se as GTAs ser\u00e3o retornadas",
+                                    "disabled": false
+                                },
+                                {
                                     "key": "registrosPagina",
-                                    "value": "4",
+                                    "value": "17",
                                     "description": "Numero de registros em cada p\u00e1gina da lista",
                                     "disabled": false
                                 },
                                 {
                                     "key": "pagina",
-                                    "value": "8",
+                                    "value": "1",
                                     "description": "Pagina da lista a ser apresentada",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/estabelecimento?municipio=totam&ano=6&UF=consequatur&nomUF=officiis&registrosPagina=4&pagina=8"
+                            "raw": "http:\/\/{{baseUrl}}\/estabelecimento?municipio=et&ano=19&UF=cum&nomUF=quam&completo=1&registrosPagina=17&pagina=1"
                         },
                         "method": "GET",
                         "header": [
@@ -98,42 +104,42 @@
                             "query": [
                                 {
                                     "key": "ano",
-                                    "value": "2",
+                                    "value": "19",
                                     "description": "Ano de emiss\u00e3o das GTAs",
                                     "disabled": false
                                 },
                                 {
                                     "key": "mes",
-                                    "value": "voluptas",
+                                    "value": "neque",
                                     "description": "Mes de emiss\u00e3o das GTAs",
                                     "disabled": false
                                 },
                                 {
                                     "key": "finalidade",
-                                    "value": "ullam",
+                                    "value": "molestiae",
                                     "description": "Nome do Estado",
                                     "disabled": false
                                 },
                                 {
                                     "key": "especie",
-                                    "value": "aut",
+                                    "value": "debitis",
                                     "description": "Nome do Estado",
                                     "disabled": false
                                 },
                                 {
                                     "key": "registrosPagina",
-                                    "value": "14",
+                                    "value": "10",
                                     "description": "Numero de registros em cada p\u00e1gina da lista",
                                     "disabled": false
                                 },
                                 {
                                     "key": "pagina",
-                                    "value": "13",
+                                    "value": "19",
                                     "description": "Pagina da lista a ser apresentada",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/gta?ano=2&mes=voluptas&finalidade=ullam&especie=aut&registrosPagina=14&pagina=13"
+                            "raw": "http:\/\/{{baseUrl}}\/gta?ano=19&mes=neque&finalidade=molestiae&especie=debitis&registrosPagina=10&pagina=19"
                         },
                         "method": "GET",
                         "header": [
@@ -167,18 +173,18 @@
                             "query": [
                                 {
                                     "key": "loginUsuarioSistema",
-                                    "value": "perferendis",
+                                    "value": "ipsam",
                                     "description": "Login do usuario",
                                     "disabled": false
                                 },
                                 {
                                     "key": "senhaUsuarioSistema",
-                                    "value": "quasi",
+                                    "value": "sunt",
                                     "description": "Senha do usuario",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/login?loginUsuarioSistema=perferendis&senhaUsuarioSistema=quasi"
+                            "raw": "http:\/\/{{baseUrl}}\/login?loginUsuarioSistema=ipsam&senhaUsuarioSistema=sunt"
                         },
                         "method": "POST",
                         "header": [
