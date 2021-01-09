@@ -1,17 +1,84 @@
 openapi: 3.0.3
 info:
     title: 'API de Publicação de Dados de GTA'
-    description: ''
+    description: 'Esta API tem deve permitir a publicação segura dos dados relacionados as Guias de Trânsito Animal (GTA) emitidas.'
     version: 1.0.0
 servers:
     -
         url: 'http://gtaapi.macsolucoes.com'
 paths:
-    /:
+    /estabelecimento:
         get:
-            summary: ''
-            description: ''
+            summary: 'Dados dos Estabelecimento'
+            description: '<aside class="notice">Retorna o conjunto de dados dos estabelecimento e as GTAs emitidas em favor deles.</aside>'
             parameters:
+                -
+                    in: query
+                    name: municipio
+                    description: '<b>Nome do Municipio</b>'
+                    example: totam
+                    required: true
+                    schema:
+                        type: string
+                        description: '<b>Nome do Municipio</b>'
+                        example: totam
+                -
+                    in: query
+                    name: ano
+                    description: '<b>Ano de emissão das GTAs</b>'
+                    example: 6
+                    required: true
+                    schema:
+                        type: integer
+                        description: '<b>Ano de emissão das GTAs</b>'
+                        example: 6
+                -
+                    in: query
+                    name: UF
+                    description: 'Sigla do Estado'
+                    example: consequatur
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Sigla do Estado'
+                        example: consequatur
+                -
+                    in: query
+                    name: nomUF
+                    description: 'Nome do Estado'
+                    example: officiis
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Nome do Estado'
+                        example: officiis
+                -
+                    in: query
+                    name: registrosPagina
+                    description: 'Numero de registros em cada página da lista'
+                    example: 4
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Numero de registros em cada página da lista'
+                        example: 4
+                -
+                    in: query
+                    name: pagina
+                    description: 'Pagina da lista a ser apresentada'
+                    example: 8
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Pagina da lista a ser apresentada'
+                        example: 8
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
                 -
                     in: header
                     name: Content-Type
@@ -27,110 +94,87 @@ paths:
                     schema:
                         type: string
             responses:
-                302:
-                    description: ''
+                200:
+                    description: '200'
                     content:
                         text/plain:
                             schema:
                                 type: string
-                                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://gtaapi.macsolucoes.com/docs'\" />\n\n        <title>Redirecting to http://gtaapi.macsolucoes.com/docs</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://gtaapi.macsolucoes.com/docs\">http://gtaapi.macsolucoes.com/docs</a>.\n    </body>\n</html>"
+                                example: "{\n'id':0,\n'codUF': 12,\n'UF': 'AC',\n'nomUF': 'Acre',\n'codMunicipio': 120212,\n'municipio': 'Rio Branco',\n'latitude': 1.23123,\n'longitude': 1.123123,\n'tipoDeEstabelecimento': 'Fazenda',\n'GTAs': ['GTAs'],\n'ano': 2020}"
             tags:
-                - Endpoints
-            security: []
-    /login:
-        post:
-            summary: 'Authenticate a user and return the token if the provided credentials are correct.'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses: {  }
-            tags:
-                - Endpoints
-            security: []
-    /entidade:
-        get:
-            summary: 'Retorna lista de registros cadastrados'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                401:
-                    description: ''
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    error: 'Token nao fornecido.'
-                                properties:
-                                    error: { type: string, example: 'Token nao fornecido.' }
-            tags:
-                - Endpoints
-            security: []
-    /estabelecimento:
-        get:
-            summary: 'Retorna lista de registros cadastrados'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                401:
-                    description: ''
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    error: 'Token nao fornecido.'
-                                properties:
-                                    error: { type: string, example: 'Token nao fornecido.' }
-            tags:
-                - Endpoints
-            security: []
+                - Estabelecimento
     /gta:
         get:
-            summary: 'Retorna lista de registros cadastrados'
-            description: ''
+            summary: 'Dados das GTAs'
+            description: '<aside class="notice">Retorna o conjunto de GTAs emitidas.</aside>'
             parameters:
+                -
+                    in: query
+                    name: ano
+                    description: '<b>Ano de emissão das GTAs</b>'
+                    example: 2
+                    required: true
+                    schema:
+                        type: integer
+                        description: '<b>Ano de emissão das GTAs</b>'
+                        example: 2
+                -
+                    in: query
+                    name: mes
+                    description: 'Mes de emissão das GTAs'
+                    example: voluptas
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Mes de emissão das GTAs'
+                        example: voluptas
+                -
+                    in: query
+                    name: finalidade
+                    description: 'Nome do Estado'
+                    example: ullam
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Nome do Estado'
+                        example: ullam
+                -
+                    in: query
+                    name: especie
+                    description: 'Nome do Estado'
+                    example: aut
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Nome do Estado'
+                        example: aut
+                -
+                    in: query
+                    name: registrosPagina
+                    description: 'Numero de registros em cada página da lista'
+                    example: 14
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Numero de registros em cada página da lista'
+                        example: 14
+                -
+                    in: query
+                    name: pagina
+                    description: 'Pagina da lista a ser apresentada'
+                    example: 13
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Pagina da lista a ser apresentada'
+                        example: 13
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
                 -
                     in: header
                     name: Content-Type
@@ -146,16 +190,118 @@ paths:
                     schema:
                         type: string
             responses:
-                401:
-                    description: ''
+                200:
+                    description: '200'
                     content:
                         application/json:
                             schema:
                                 type: object
                                 example:
-                                    error: 'Token nao fornecido.'
+                                    numGTA: '604708'
+                                    serieGTA: D
+                                    dataHoraEmissao: '2019-01-02'
+                                    ano: '2019'
+                                    mes: '1'
+                                    tipoDeTransporte: RODOVIÁRIO
+                                    finalidade: Abate
+                                    especie: BOVINOS
+                                    orig_Id: '16621'
+                                    dest_Id: '10399'
+                                    orig_Tipo: Propriedade
+                                    dest_Tipo: Agroindustria
+                                    bovTotal: '6'
+                                    bovMacho: '6'
+                                    bovFemea: '0'
+                                    bov0a12Macho: '0'
+                                    bov0a12Femea: '0'
+                                    bov13a24Macho: '0'
+                                    bov13a24Femea: '0'
+                                    bov25a36Macho: '0'
+                                    bov25a36Femea: '0'
+                                    bovmais36Macho: '6'
+                                    bovmais36Femea: '0'
                                 properties:
-                                    error: { type: string, example: 'Token nao fornecido.' }
+                                    numGTA: { type: string, example: '604708', description: . }
+                                    serieGTA: { type: string, example: D, description: . }
+                                    dataHoraEmissao: { type: string, example: '2019-01-02', description: 'date .' }
+                                    ano: { type: string, example: '2019', description: . }
+                                    mes: { type: string, example: '1', description: . }
+                                    tipoDeTransporte: { type: string, example: RODOVIÁRIO, description: . }
+                                    finalidade: { type: string, example: Abate, description: . }
+                                    especie: { type: string, example: BOVINOS, description: . }
+                                    orig_Id: { type: string, example: '16621', description: . }
+                                    dest_Id: { type: string, example: '10399', description: . }
+                                    orig_Tipo: { type: string, example: Propriedade, description: . }
+                                    dest_Tipo: { type: string, example: Agroindustria, description: . }
+                                    bovTotal: { type: string, example: '6', description: . }
+                                    bovMacho: { type: string, example: '6', description: . }
+                                    bovFemea: { type: string, example: '0', description: . }
+                                    bov0a12Macho: { type: string, example: '0', description: . }
+                                    bov0a12Femea: { type: string, example: '0', description: . }
+                                    bov13a24Macho: { type: string, example: '0', description: . }
+                                    bov13a24Femea: { type: string, example: '0', description: . }
+                                    bov25a36Macho: { type: string, example: '0', description: . }
+                                    bov25a36Femea: { type: string, example: '0', description: . }
+                                    bovmais36Macho: { type: string, example: '6', description: . }
+                                    bovmais36Femea: { type: string, example: '0', description: . }
             tags:
-                - Endpoints
+                - GTA
+    /login:
+        post:
+            summary: 'Login no Sistema'
+            description: '<aside class="notice">Autentica usuario na API.</aside>'
+            parameters:
+                -
+                    in: query
+                    name: loginUsuarioSistema
+                    description: '<b>Login do usuario</b>'
+                    example: perferendis
+                    required: true
+                    schema:
+                        type: string
+                        description: '<b>Login do usuario</b>'
+                        example: perferendis
+                -
+                    in: query
+                    name: senhaUsuarioSistema
+                    description: '<b>Senha do usuario</b>'
+                    example: quasi
+                    required: true
+                    schema:
+                        type: string
+                        description: '<b>Senha do usuario</b>'
+                        example: quasi
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "{\n\"idUsuarioSistema\": 1,\n\"idPessoa\": null,\n\"nomeUsuarioSistema\": \"Usuario\",\n\"emailUsuarioSistema\": \"usuario@email.com\",\n\"situacaoUsuarioSistema\": \"ATIVO\",\n\"remember_token\": null,\n\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.* eyJpc3MiOiJodHRwOlwvXC9ndGFhcGkubWFjc29sdWNvZXMuY29tIiwic3ViIjoxLCJ1c2VyIjoiQWRyaWFubyBTYWxlcyBTYW50b3MiLCJpYXQiOjE2MTAxMzU3NDEsImV4cCI6MTYxMDEzOTM0MX0.* 2gHZwAHqY5CHKENYVR_WU0Zk8LndeQ0LUkcFf7pKhMo\""
+            tags:
+                - 'Login Acesso'
             security: []
+components:
+    securitySchemes:
+        default:
+            type: http
+            scheme: bearer
+            description: ''
+security:
+    -
+        default: []

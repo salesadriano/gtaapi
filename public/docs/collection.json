@@ -10,24 +10,61 @@
     ],
     "info": {
         "name": "API de Publica\u00e7\u00e3o de Dados de GTA",
-        "_postman_id": "7145f4c7-834c-4236-aa05-2ddd04394588",
-        "description": "",
+        "_postman_id": "715efbde-d57a-4ed2-9551-94154520ef40",
+        "description": "Esta API tem deve permitir a publica\u00e7\u00e3o segura dos dados relacionados as Guias de Tr\u00e2nsito Animal (GTA) emitidas.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Endpoints",
+            "name": "Estabelecimento",
             "description": "",
             "item": [
                 {
-                    "name": "\/",
+                    "name": "Dados dos Estabelecimento",
                     "request": {
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "\/",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/\/"
+                            "path": "estabelecimento",
+                            "query": [
+                                {
+                                    "key": "municipio",
+                                    "value": "totam",
+                                    "description": "Nome do Municipio",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "ano",
+                                    "value": "6",
+                                    "description": "Ano de emiss\u00e3o das GTAs",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "UF",
+                                    "value": "consequatur",
+                                    "description": "Sigla do Estado",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "nomUF",
+                                    "value": "officiis",
+                                    "description": "Nome do Estado",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "registrosPagina",
+                                    "value": "4",
+                                    "description": "Numero de registros em cada p\u00e1gina da lista",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "pagina",
+                                    "value": "8",
+                                    "description": "Pagina da lista a ser apresentada",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/estabelecimento?municipio=totam&ano=6&UF=consequatur&nomUF=officiis&registrosPagina=4&pagina=8"
                         },
                         "method": "GET",
                         "header": [
@@ -41,22 +78,107 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "<aside class=\"notice\">Retorna o conjunto de dados dos estabelecimento e as GTAs emitidas em favor deles.<\/aside>"
                     },
                     "response": []
-                },
+                }
+            ]
+        },
+        {
+            "name": "GTA",
+            "description": "",
+            "item": [
                 {
-                    "name": "Authenticate a user and return the token if the provided credentials are correct.",
+                    "name": "Dados das GTAs",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "gta",
+                            "query": [
+                                {
+                                    "key": "ano",
+                                    "value": "2",
+                                    "description": "Ano de emiss\u00e3o das GTAs",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "mes",
+                                    "value": "voluptas",
+                                    "description": "Mes de emiss\u00e3o das GTAs",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "finalidade",
+                                    "value": "ullam",
+                                    "description": "Nome do Estado",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "especie",
+                                    "value": "aut",
+                                    "description": "Nome do Estado",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "registrosPagina",
+                                    "value": "14",
+                                    "description": "Numero de registros em cada p\u00e1gina da lista",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "pagina",
+                                    "value": "13",
+                                    "description": "Pagina da lista a ser apresentada",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/gta?ano=2&mes=voluptas&finalidade=ullam&especie=aut&registrosPagina=14&pagina=13"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<aside class=\"notice\">Retorna o conjunto de GTAs emitidas.<\/aside>"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Login Acesso",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login no Sistema",
                     "request": {
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "login",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/login"
+                            "query": [
+                                {
+                                    "key": "loginUsuarioSistema",
+                                    "value": "perferendis",
+                                    "description": "Login do usuario",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "senhaUsuarioSistema",
+                                    "value": "quasi",
+                                    "description": "Senha do usuario",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/login?loginUsuarioSistema=perferendis&senhaUsuarioSistema=quasi"
                         },
                         "method": "POST",
                         "header": [
@@ -70,94 +192,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Retorna lista de registros cadastrados",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "entidade",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/entidade"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Retorna lista de registros cadastrados",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "estabelecimento",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/estabelecimento"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Retorna lista de registros cadastrados",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "gta",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/gta"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
+                        "description": "<aside class=\"notice\">Autentica usuario na API.<\/aside>",
                         "auth": {
                             "type": "noauth"
                         }
@@ -168,6 +203,6 @@
         }
     ],
     "auth": {
-        "type": "noauth"
+        "type": "bearer"
     }
 }

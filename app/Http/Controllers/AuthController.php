@@ -7,6 +7,9 @@ use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group Login Acesso
+ */
 class AuthController extends Controller
 {
     /**
@@ -56,17 +59,39 @@ class AuthController extends Controller
             'sub' => $user->idUsuarioSistema, // Subject do TOKEN.
             'user' => $user->nomeUsuarioSistema, // Nome do usuário.
             'iat' => time(), // Hora da emissão do TOKEN.
-            'exp' => time() + 60 * 60 // Hora de exporiração do TOKEN.
+            'exp' => time() + 60 * 60, // Hora de exporiração do TOKEN.
         ];
         // As you can see we are passing `JWT_SECRET` as the second parameter that will
         // be used to decode the token in the future.
         return JWT::encode($payload, env('JWT_SECRET'));
     }
+
     /**
-     * Authenticate a user and return the token if the provided credentials are correct.
+     * Login no Sistema
      *
-     * @param  \App\User   $user
-     * @return mixed
+     * <aside class="notice">Autentica usuario na API.</aside>
+     *
+     * @queryParam loginUsuarioSistema string required <b>Login do usuario</b>
+     * @queryParam senhaUsuarioSistema string required <b>Senha do usuario</b>
+     *
+     * @responseField idUsuarioSistema integer ID do registro no bando de dados
+     * @responseField idPessoa integer ID da pessoa assiciado ao usuario
+     * @responseField nomeUsuarioSistema string Nome completo do usuario
+     * @responseField emailUsuarioSistema string E-mail do usuario
+     * @responseField situacaoUsuarioSistema integer Situacao do usuario
+     * @responseField token string Token de autorização do usuario
+     *
+     * @response 200 {
+     * "idUsuarioSistema": 1,
+     * "idPessoa": null,
+     * "nomeUsuarioSistema": "Usuario",
+     * "emailUsuarioSistema": "usuario@email.com",
+     * "situacaoUsuarioSistema": "ATIVO",
+     * "remember_token": null,
+     * "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.* eyJpc3MiOiJodHRwOlwvXC9ndGFhcGkubWFjc29sdWNvZXMuY29tIiwic3ViIjoxLCJ1c2VyIjoiQWRyaWFubyBTYWxlcyBTYW50b3MiLCJpYXQiOjE2MTAxMzU3NDEsImV4cCI6MTYxMDEzOTM0MX0.* 2gHZwAHqY5CHKENYVR_WU0Zk8LndeQ0LUkcFf7pKhMo"
+     *
+     * @group Login Acesso
+     *
      */
     public function login(UsuarioSistema $user)
     {

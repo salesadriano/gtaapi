@@ -31,7 +31,7 @@ RUN ln -fs /usr/share/zoneinfo/America/Rio_Branco /etc/localtime && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen && \
     apt -y --no-install-recommends install msodbcsql17 mssql-tools && \
-    apt -y install gcc g++ make autoconf libc-dev pkg-config  ntp php7.4 \
+    apt -y install gcc g++ make autoconf libc-dev pkg-config ntp php7.4 \
                    php7.4-fpm \
                    php7.4-mysql \
                    php7.4-mbstring \

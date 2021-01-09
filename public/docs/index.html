@@ -26,6 +26,7 @@
       </span>
 </a>
 <div class="tocify-wrapper">
+        <img src="1" alt="logo" class="logo" style="padding-top: 10px;" width="230px"/>
                 <div class="lang-selector">
                             <a href="#" data-language-name="bash">bash</a>
                             <a href="#" data-language-name="javascript">javascript</a>
@@ -44,16 +45,16 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: January 4 2021</li>
+            <li>Last updated: January 9 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
     <div class="dark-box"></div>
     <div class="content">
         <h1>Introduction</h1>
-<p>This documentation aims to provide all the information you need to work with our API.</p>
-<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<p>Esta API tem deve permitir a publicação segura dos dados relacionados as Guias de Trânsito Animal (GTA) emitidas.</p>
+<p>This documentation .</p>
+<aside>As you scroll, </aside>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script>
     var baseUrl = "http://gtaapi.macsolucoes.com";
@@ -63,20 +64,37 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://gtaapi.macsolucoes.com</code></pre><h1>Authenticating requests</h1>
-<p>This API is not authenticated.</p><h1>Endpoints</h1>
-<h2>/</h2>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Estabelecimento</h1>
+<h2>Dados dos Estabelecimento</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<aside class="notice">Retorna o conjunto de dados dos estabelecimento e as GTAs emitidas em favor deles.</aside>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/" \
+    -G "http://gtaapi.macsolucoes.com/estabelecimento?municipio=totam&amp;ano=6&amp;UF=consequatur&amp;nomUF=officiis&amp;registrosPagina=4&amp;pagina=8" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://gtaapi.macsolucoes.com/"
+    "http://gtaapi.macsolucoes.com/estabelecimento"
 );
 
+let params = {
+    "municipio": "totam",
+    "ano": "6",
+    "UF": "consequatur",
+    "nomUF": "officiis",
+    "registrosPagina": "4",
+    "pagina": "8",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -86,52 +104,352 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
-<p>Example response (302):</p>
+<p>Example response (200):</p>
 </blockquote>
 <pre><code class="language-json">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="UTF-8" /&gt;
-        &lt;meta http-equiv="refresh" content="0;url='http://gtaapi.macsolucoes.com/docs'" /&gt;
-
-        &lt;title&gt;Redirecting to http://gtaapi.macsolucoes.com/docs&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Redirecting to &lt;a href="http://gtaapi.macsolucoes.com/docs"&gt;http://gtaapi.macsolucoes.com/docs&lt;/a&gt;.
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<div id="execution-results-GET-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GET-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GET-"></code></pre>
+{
+'id':0,
+'codUF': 12,
+'UF': 'AC',
+'nomUF': 'Acre',
+'codMunicipio': 120212,
+'municipio': 'Rio Branco',
+'latitude': 1.23123,
+'longitude': 1.123123,
+'tipoDeEstabelecimento': 'Fazenda',
+'GTAs': ['GTAs'],
+'ano': 2020}</code></pre>
+<div id="execution-results-GETestabelecimento" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETestabelecimento"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETestabelecimento"></code></pre>
 </div>
-<div id="execution-error-GET-" hidden>
+<div id="execution-error-GETestabelecimento" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GET-"></code></pre>
+    <pre><code id="execution-error-message-GETestabelecimento"></code></pre>
 </div>
-<form id="form-GET-" data-method="GET" data-path="/" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GET-', this);">
+<form id="form-GETestabelecimento" data-method="GET" data-path="estabelecimento" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETestabelecimento', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GET-" onclick="tryItOut('GET-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GET-" onclick="cancelTryOut('GET-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GET-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETestabelecimento" onclick="tryItOut('GETestabelecimento');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETestabelecimento" onclick="cancelTryOut('GETestabelecimento');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETestabelecimento" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>/</code></b>
+ <b><code>estabelecimento</code></b>
 </p>
+<p>
+<label id="auth-GETestabelecimento" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETestabelecimento" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>municipio</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="municipio" data-endpoint="GETestabelecimento" data-component="query" required  hidden>
+<br>
+<b>Nome do Municipio</b></p>
+<p>
+<b><code>ano</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="ano" data-endpoint="GETestabelecimento" data-component="query" required  hidden>
+<br>
+<b>Ano de emissão das GTAs</b></p>
+<p>
+<b><code>UF</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="UF" data-endpoint="GETestabelecimento" data-component="query"  hidden>
+<br>
+Sigla do Estado</p>
+<p>
+<b><code>nomUF</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="nomUF" data-endpoint="GETestabelecimento" data-component="query"  hidden>
+<br>
+Nome do Estado</p>
+<p>
+<b><code>registrosPagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="registrosPagina" data-endpoint="GETestabelecimento" data-component="query"  hidden>
+<br>
+Numero de registros em cada página da lista</p>
+<p>
+<b><code>pagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="pagina" data-endpoint="GETestabelecimento" data-component="query"  hidden>
+<br>
+Pagina da lista a ser apresentada</p>
 </form>
-<h2>Authenticate a user and return the token if the provided credentials are correct.</h2>
+<h3>Response</h3>
+<h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+ID do registro no bando de dados</p>
+<p>
+<b><code>codUF</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+Codigo do municipio no IBGE</p>
+<p>
+<b><code>UF</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Sigla do Estado</p>
+<p>
+<b><code>nomUF</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Nome do Estado</p>
+<p>
+<b><code>codMunicipio</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+Codigo do municipio no IBGE</p>
+<p>
+<b><code>municipio</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Nome do municipio</p>
+<p>
+<b><code>latitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<br>
+Latitude do estabelecimento</p>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<br>
+Longitude do estabelecimento</p>
+<p>
+<b><code>tipoDeEstabelecimento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Tipo de Estabelecimento</p>
+<p>
+<b><code>GTAs</code></b>&nbsp;&nbsp;  &nbsp;
+<br>
+GTA[] GTAs associadas ao Estabelecimento</p>
+<p>
+<b><code>ano</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+Ano de emissão das GTAs</p><h1>GTA</h1>
+<h2>Dados das GTAs</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<aside class="notice">Retorna o conjunto de GTAs emitidas.</aside>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://gtaapi.macsolucoes.com/gta?ano=2&amp;mes=voluptas&amp;finalidade=ullam&amp;especie=aut&amp;registrosPagina=14&amp;pagina=13" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://gtaapi.macsolucoes.com/gta"
+);
+
+let params = {
+    "ano": "2",
+    "mes": "voluptas",
+    "finalidade": "ullam",
+    "especie": "aut",
+    "registrosPagina": "14",
+    "pagina": "13",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "numGTA": "604708",
+    "serieGTA": "D",
+    "dataHoraEmissao": "2019-01-02",
+    "ano": "2019",
+    "mes": "1",
+    "tipoDeTransporte": "RODOVIÁRIO",
+    "finalidade": "Abate",
+    "especie": "BOVINOS",
+    "orig_Id": "16621",
+    "dest_Id": "10399",
+    "orig_Tipo": "Propriedade",
+    "dest_Tipo": "Agroindustria",
+    "bovTotal": "6",
+    "bovMacho": "6",
+    "bovFemea": "0",
+    "bov0a12Macho": "0",
+    "bov0a12Femea": "0",
+    "bov13a24Macho": "0",
+    "bov13a24Femea": "0",
+    "bov25a36Macho": "0",
+    "bov25a36Femea": "0",
+    "bovmais36Macho": "6",
+    "bovmais36Femea": "0"
+}</code></pre>
+<div id="execution-results-GETgta" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETgta"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETgta"></code></pre>
+</div>
+<div id="execution-error-GETgta" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETgta"></code></pre>
+</div>
+<form id="form-GETgta" data-method="GET" data-path="gta" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETgta', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETgta" onclick="tryItOut('GETgta');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETgta" onclick="cancelTryOut('GETgta');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETgta" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>gta</code></b>
+</p>
+<p>
+<label id="auth-GETgta" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETgta" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>ano</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="ano" data-endpoint="GETgta" data-component="query" required  hidden>
+<br>
+<b>Ano de emissão das GTAs</b></p>
+<p>
+<b><code>mes</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="mes" data-endpoint="GETgta" data-component="query"  hidden>
+<br>
+Mes de emissão das GTAs</p>
+<p>
+<b><code>finalidade</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="finalidade" data-endpoint="GETgta" data-component="query"  hidden>
+<br>
+Nome do Estado</p>
+<p>
+<b><code>especie</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="especie" data-endpoint="GETgta" data-component="query"  hidden>
+<br>
+Nome do Estado</p>
+<p>
+<b><code>registrosPagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="registrosPagina" data-endpoint="GETgta" data-component="query"  hidden>
+<br>
+Numero de registros em cada página da lista</p>
+<p>
+<b><code>pagina</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="pagina" data-endpoint="GETgta" data-component="query"  hidden>
+<br>
+Pagina da lista a ser apresentada</p>
+</form>
+<h3>Response</h3>
+<h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+<p>
+<b><code>numGTA</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>serieGTA</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>dataHoraEmissao</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+date .</p>
+<p>
+<b><code>ano</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>mes</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>tipoDeTransporte</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>finalidade</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>especie</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>orig_Id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>dest_Id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>orig_Tipo</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>dest_Tipo</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bovTotal</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bovMacho</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bovFemea</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov0a12Macho</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov0a12Femea</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov13a24Macho</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov13a24Femea</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov25a36Macho</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bov25a36Femea</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bovmais36Macho</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p>
+<p>
+<b><code>bovmais36Femea</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+.</p><h1>Login Acesso</h1>
+<h2>Login no Sistema</h2>
+<aside class="notice">Autentica usuario na API.</aside>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://gtaapi.macsolucoes.com/login" \
+    "http://gtaapi.macsolucoes.com/login?loginUsuarioSistema=perferendis&amp;senhaUsuarioSistema=quasi" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://gtaapi.macsolucoes.com/login"
 );
+
+let params = {
+    "loginUsuarioSistema": "perferendis",
+    "senhaUsuarioSistema": "quasi",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -142,6 +460,18 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+"idUsuarioSistema": 1,
+"idPessoa": null,
+"nomeUsuarioSistema": "Usuario",
+"emailUsuarioSistema": "usuario@email.com",
+"situacaoUsuarioSistema": "ATIVO",
+"remember_token": null,
+"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.* eyJpc3MiOiJodHRwOlwvXC9ndGFhcGkubWFjc29sdWNvZXMuY29tIiwic3ViIjoxLCJ1c2VyIjoiQWRyaWFubyBTYWxlcyBTYW50b3MiLCJpYXQiOjE2MTAxMzU3NDEsImV4cCI6MTYxMDEzOTM0MX0.* 2gHZwAHqY5CHKENYVR_WU0Zk8LndeQ0LUkcFf7pKhMo"</code></pre>
 <div id="execution-results-POSTlogin" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTlogin"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTlogin"></code></pre>
@@ -161,148 +491,44 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>login</code></b>
 </p>
-</form>
-<h2>Retorna lista de registros cadastrados</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/entidade" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://gtaapi.macsolucoes.com/entidade"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "error": "Token nao fornecido."
-}</code></pre>
-<div id="execution-results-GETentidade" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETentidade"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETentidade"></code></pre>
-</div>
-<div id="execution-error-GETentidade" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETentidade"></code></pre>
-</div>
-<form id="form-GETentidade" data-method="GET" data-path="entidade" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETentidade', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETentidade" onclick="tryItOut('GETentidade');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETentidade" onclick="cancelTryOut('GETentidade');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETentidade" hidden>Send Request 💥</button>
-    </h3>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
 <p>
-<small class="badge badge-green">GET</small>
- <b><code>entidade</code></b>
-</p>
-</form>
-<h2>Retorna lista de registros cadastrados</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/estabelecimento" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://gtaapi.macsolucoes.com/estabelecimento"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "error": "Token nao fornecido."
-}</code></pre>
-<div id="execution-results-GETestabelecimento" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETestabelecimento"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETestabelecimento"></code></pre>
-</div>
-<div id="execution-error-GETestabelecimento" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETestabelecimento"></code></pre>
-</div>
-<form id="form-GETestabelecimento" data-method="GET" data-path="estabelecimento" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETestabelecimento', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETestabelecimento" onclick="tryItOut('GETestabelecimento');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETestabelecimento" onclick="cancelTryOut('GETestabelecimento');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETestabelecimento" hidden>Send Request 💥</button>
-    </h3>
+<b><code>loginUsuarioSistema</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="loginUsuarioSistema" data-endpoint="POSTlogin" data-component="query" required  hidden>
+<br>
+<b>Login do usuario</b></p>
 <p>
-<small class="badge badge-green">GET</small>
- <b><code>estabelecimento</code></b>
-</p>
+<b><code>senhaUsuarioSistema</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="senhaUsuarioSistema" data-endpoint="POSTlogin" data-component="query" required  hidden>
+<br>
+<b>Senha do usuario</b></p>
 </form>
-<h2>Retorna lista de registros cadastrados</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://gtaapi.macsolucoes.com/gta" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://gtaapi.macsolucoes.com/gta"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "error": "Token nao fornecido."
-}</code></pre>
-<div id="execution-results-GETgta" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETgta"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETgta"></code></pre>
-</div>
-<div id="execution-error-GETgta" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETgta"></code></pre>
-</div>
-<form id="form-GETgta" data-method="GET" data-path="gta" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETgta', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETgta" onclick="tryItOut('GETgta');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETgta" onclick="cancelTryOut('GETgta');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETgta" hidden>Send Request 💥</button>
-    </h3>
+<h3>Response</h3>
+<h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
 <p>
-<small class="badge badge-green">GET</small>
- <b><code>gta</code></b>
-</p>
-</form>
+<b><code>idUsuarioSistema</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+ID do registro no bando de dados</p>
+<p>
+<b><code>idPessoa</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+ID da pessoa assiciado ao usuario</p>
+<p>
+<b><code>nomeUsuarioSistema</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Nome completo do usuario</p>
+<p>
+<b><code>emailUsuarioSistema</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+E-mail do usuario</p>
+<p>
+<b><code>situacaoUsuarioSistema</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<br>
+Situacao do usuario</p>
+<p>
+<b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<br>
+Token de autorização do usuario</p>
     </div>
     <div class="dark-box">
                     <div class="lang-selector">

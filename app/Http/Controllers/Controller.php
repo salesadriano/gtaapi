@@ -59,7 +59,7 @@ class Controller extends BaseController
      * @return Json
      *
      */
-    public function mostrar(Request $request, String $campos = '', Bool $completo = true)
+    public function mostrar(Request $request , String $campos = '', Bool $completo = true)
     {
      try {
       if (count($request->all())) {

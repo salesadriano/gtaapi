@@ -9,15 +9,19 @@
 | It is a breeze. Simply tell Lumen the URIs it should respond to
 | and give it the Closure to call when that URI is requested.
 |
-*/
+ */
 
+/**
+ * @hideFromAPIDocumentation
+ *
+ */
 $router->get('/', function () use ($router) {
     return redirect('docs');;
 });
 
 $router->post('login', 'AuthController@login');
 
-//Entidade
+// Entidade
 $router->get('entidade', 'EntidadeController@mostrar');
 
 //Estabelecimento
@@ -25,6 +29,3 @@ $router->get('estabelecimento', 'EstabelecimentoController@mostrar');
 
 //GTA
 $router->get('gta', 'GtaController@mostrar');
-
-
-
