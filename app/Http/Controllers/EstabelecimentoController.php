@@ -28,6 +28,7 @@ class EstabelecimentoController extends Controller
      * @queryParam ano integer required <b>Ano de emissão das GTAs</b>
      * @queryParam UF string Sigla do Estado
      * @queryParam nomUF string Nome do Estado
+     * @queryParam completo boolean Determina se as GTAs serão retornadas
      * @queryParam registrosPagina integer Numero de registros em cada página da lista
      * @queryParam pagina integer Pagina da lista a ser apresentada
      *
